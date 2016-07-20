@@ -1,14 +1,16 @@
 let s:cpo_save = &cpo
 set cpo&vim
 
+if !exists('g:fzf_mru_file_list_size')
+	let g:fzf_mru_file_list_size = 10
+end
+
 function! s:ListMruFile()
 	let files = map(copy(g:FZF_MRU_FILE_LIST), 'fnamemodify(v:val, ":~:.")')
 	let file_len = len(files)
 	if file_len == 0
 		return
-	elseif file_len > 10
-		let file_len = 10
-	endif
+	end
 	let file_len = file_len + 2
 	call fzf#run({
 			\ 'source': files,
@@ -38,6 +40,8 @@ function! s:ClearCurrentFile()
 	if idx >= 0
 		call remove(g:FZF_MRU_FILE_LIST, idx)
 	end
+	let max_index = g:fzf_mru_file_list_size - 1
+	let g:FZF_MRU_FILE_LIST = g:FZF_MRU_FILE_LIST[:max_index]
 endfunction
 
 if has('nvim')
