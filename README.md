@@ -9,6 +9,12 @@ could not to be accepted. And I have to make this repo.
 
 ```
 Plug 'lvht/fzf-mru'|Plug 'junegunn/fzf'
+
+
+" set max lenght for the mru file list
+let g:fzf_mru_file_list_size = 10 " default value
+" set path pattens that should be ignored
+let g:fzf_mru_ignore_patterns = 'fugitive\|\.git/\|\_^/tmp/' " default value
 ```
 
 # Usage
