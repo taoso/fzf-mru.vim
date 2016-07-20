@@ -5,6 +5,10 @@ if !exists('g:fzf_mru_file_list_size')
 	let g:fzf_mru_file_list_size = 10
 end
 
+if !exists('g:fzf_mru_ignore_patterns')
+	let g:fzf_mru_ignore_patterns = 'fugitive\|\.git/\|\_^/tmp/'
+end
+
 function! s:ListMruFile()
 	let files = map(copy(g:FZF_MRU_FILE_LIST), 'fnamemodify(v:val, ":~:.")')
 	let file_len = len(files)
@@ -24,9 +28,11 @@ function! s:RecordMruFile()
 	if !filereadable(cpath)
 		return
 	endif
-	if cpath =~ 'fugitive'
+
+	if cpath =~# g:fzf_mru_ignore_patterns
 		return
-	endif
+	end
+
 	let idx = index(g:FZF_MRU_FILE_LIST, cpath)
 	if idx >= 0
 		call filter(g:FZF_MRU_FILE_LIST, 'v:val !=# cpath')
