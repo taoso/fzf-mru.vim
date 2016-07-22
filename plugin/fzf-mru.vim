@@ -15,6 +15,9 @@ function! s:ListMruFile()
 	if file_len == 0
 		return
 	end
+	if file_len > 10
+		let file_len = 10
+	endif
 	let file_len = file_len + 2
 	call fzf#run({
 			\ 'source': files,
