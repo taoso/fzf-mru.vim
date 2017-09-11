@@ -19,11 +19,10 @@ function! s:ListMruFile()
 		let file_len = 10
 	endif
 	let file_len = file_len + 2
-	call fzf#run({
+	call fzf#run(fzf#wrap({
 			\ 'source': files,
-			\ 'sink': 'edit',
 			\ 'options': '-m -x +s',
-			\ 'down': file_len})
+			\ 'down': file_len}))
 endfunction
 
 function! s:RecordMruFile()
