@@ -63,8 +63,10 @@ if !exists('g:FZF_MRU_FILE_LIST')
 	let g:FZF_MRU_FILE_LIST = []
 endif
 
-autocmd! BufEnter * call s:ClearCurrentFile()
-autocmd! BufWinLeave,BufWritePost * call s:RecordMruFile()
+augroup FZFMru
+  autocmd! BufEnter * call s:ClearCurrentFile()
+  autocmd! BufWinLeave,BufWritePost * call s:RecordMruFile()
+augroup END
 
 command! FZFMru call s:ListMruFile()
 
