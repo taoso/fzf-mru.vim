@@ -56,7 +56,9 @@ if has('nvim')
 	rsh
 else
 	set viminfo+=!
-	rv
+	if filereadable('~/.viminfo')
+		rv
+	endif
 endif
 
 if !exists('g:FZF_MRU_FILE_LIST')
