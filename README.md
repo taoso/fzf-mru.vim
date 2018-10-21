@@ -1,3 +1,5 @@
+__Archived. Use [mru](https://github.com/lvht/mru) instead.__
+
 # fzf-mru
 
 Most Recently Used File List for Vim/NeoVim based on [FZF](https://github.com/junegunn/fzf).
